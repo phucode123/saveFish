@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/game_over"
+    android:orientation="horizontal">
+
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="298dp"
+        android:layout_height="129dp"
+        android:layout_marginTop="192dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="55dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="149dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/matemasie_regular"
+                android:text="Your Point"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/your_point_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/matemasie_regular"
+                android:text="00"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="149dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/matemasie_regular"
+                android:text="Pointest"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/highest_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/matemasie_regular"
+                android:text="00"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+        </TableRow>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="159dp"
+        android:layout_height="168dp"
+        android:layout_marginBottom="112dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/try_again_button"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:fontFamily="@font/matemasie_regular"
+            android:text="Try again" />
+
+        <Button
+            android:id="@+id/exit_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/orange"
+            android:fontFamily="@font/matemasie_regular"
+            android:text="give up" />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/light_winner"
+        android:layout_width="412dp"
+        android:layout_height="438dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/light_winner"
+        />
+    <ImageView
+        android:id="@+id/No1NewHighest"
+        android:layout_width="200dp"
+        android:layout_height="215dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/no1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
