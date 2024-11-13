@@ -14,7 +14,6 @@
         tools:targetApi="31" >
         <activity android:name=".MainActivity"
             android:exported="true"
-
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,11 +23,19 @@
         <activity android:name=".view.GameOver"
             android:exported="true"
             >
-
         </activity>
+        <activity android:name=".view.ChangeLevel"
+            android:exported="true"
+            ></activity>
         <activity
             android:name=".view.level2.GameView2"
             android:screenOrientation="landscape">
+            <!-- Các thuộc tính khác của activity -->
+        </activity>
+        <activity
+            android:name=".view.ScoreActivity"
+            android:exported="true"
+            >
             <!-- Các thuộc tính khác của activity -->
         </activity>
     </application>

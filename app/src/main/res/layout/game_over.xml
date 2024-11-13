@@ -66,32 +66,6 @@
         </TableRow>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="159dp"
-        android:layout_height="168dp"
-        android:layout_marginBottom="112dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/try_again_button"
-            android:layout_width="match_parent"
-            android:layout_height="66dp"
-            android:fontFamily="@font/matemasie_regular"
-            android:text="Try again" />
-
-        <Button
-            android:id="@+id/exit_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/orange"
-            android:fontFamily="@font/matemasie_regular"
-            android:text="give up" />
-    </LinearLayout>
     <ImageView
         android:id="@+id/light_winner"
         android:layout_width="412dp"
@@ -113,5 +87,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/no1" />
+
+    <Button
+        android:id="@+id/exit_button"
+        android:layout_width="141dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/orange"
+        android:fontFamily="@font/matemasie_regular"
+        android:text="give up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/try_again_button" />
+
+    <Button
+        android:id="@+id/save_point"
+        android:layout_width="174dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="508dp"
+        android:fontFamily="@font/matemasie_regular"
+        android:text="Save point"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/try_again_button"
+        android:layout_width="187dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/matemasie_regular"
+        android:text="Try again"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/save_point" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

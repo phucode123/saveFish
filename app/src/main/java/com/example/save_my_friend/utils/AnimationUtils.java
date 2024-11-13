@@ -9,86 +9,96 @@ import com.example.save_my_friend.model.weapons.Animation;
 import com.example.save_my_friend.model.weapons.Animation;
 
 public class AnimationUtils {
-    public Animation currentAni;
-  //  public double frame = 0.5;
-    private long lastFrameChangeTime;
+    private Animation weaponAnimation;
+    private Animation bossAnimation;
+    private long lastFrameChangeTimeWeapon;
+    private long lastFrameChangeTimeBoss;
     private int currentFrameIndex= 0;
-   // private long lastFrameTime;
+    private int weaponFrameIndex = 0;
+    private int bossFrameIndex = 0;
+    // private long lastFrameTime;
     private boolean isAnimating = false;
     private long frameDuration = 100; // Thời gian mỗi frame (ms)
     private AnimationCallback callback;
-
-    private int countFrame = 0;
-    private boolean isSwordActive = true;
     public AnimationUtils(Context context, AnimationCallback callback) {
-        // Khởi tạo các frame cho thanh kiếm và khẩu súng
         this.callback = callback;
-//        currentAni = new Animation(new Bitmap[]{
-//                getBitMap(context, R.drawable.spire_lv2_1),
-//                getBitMap(context, R.drawable.spire_lv2_2),
-//                getBitMap(context, R.drawable.spire_lv2_3),
-//                getBitMap(context, R.drawable.spire_lv2_4),
-//                getBitMap(context, R.drawable.spire_lv2_5),
-//                getBitMap(context, R.drawable.spire_lv2_6),
-//                getBitMap(context, R.drawable.spire_lv2_7),
-//                getBitMap(context, R.drawable.spire_lv2_8),
-//        });
-//        this.currentAni = currentAni;
-//        gun = new Animation(new Bitmap[]{
-//                getBitMap(context, R.drawable.gun_lv2_1),
-//                getBitMap(context, R.drawable.gun_lv2_2),
-//                getBitMap(context, R.drawable.gun_lv2_3),
-//                getBitMap(context, R.drawable.gun_lv2_4),
-//                getBitMap(context, R.drawable.gun_lv2_5),
-//                getBitMap(context, R.drawable.gun_lv2_6),
-//                getBitMap(context, R.drawable.gun_lv2_7),
-//                getBitMap(context, R.drawable.gun_lv2_8),
-//                // Add other frames
-//        });
     }
-
     public static Animation AnimationUnitys(String nameU){
         return null;
     }
     public static Bitmap getBitMap(Context context, int idPng) {
         return ImageUtils.getResizedBitmap(context, idPng, 0.5f, 0.5f);
     }
-
     public void update() {
         if (isAnimating) {
+            //Log.d("Vu khi", "drawContent: frame vu khi so: " );
+            //
             long currentTime = System.currentTimeMillis();
-            if (currentTime - lastFrameChangeTime > frameDuration) {
-//                Log.d("currentIndex", "update: "+currentFrameIndex+ " "+ currentAni.getFrameCount());
-                currentFrameIndex++;
-                this.currentAni.nextFrame();
-                lastFrameChangeTime = currentTime;
-                if (currentFrameIndex >= currentAni.getFrameCount()) {
-                    Log.d("weapons", "update: lần thứ"+ currentFrameIndex);
-                    currentFrameIndex = 0;
+            if (currentTime - lastFrameChangeTimeWeapon > frameDuration) {
+                //Log.d("currentIndex", "update: "+weaponFrameIndex+ " "+ weaponAnimation.getFrameCount());
+                weaponFrameIndex++;
+                this.weaponAnimation.nextFrame();
+                lastFrameChangeTimeWeapon = currentTime;
+                if (weaponFrameIndex >= weaponAnimation.getFrameCount()) {
+                    //  Log.d("weapons", "update: lần thứ"+ currentFrameIndex);
+                    weaponFrameIndex = 0;
                     isAnimating = false;
                     if (callback != null) {
+                      //  Log.d("TAG", "update: weapon ket thuc");
                         callback.onAnimationComplete(); // Gọi callback khi hoàn tất
                     }
                 }
             }
         }
     }
+    public void updateBoss() {
+        long currentTime = System.currentTimeMillis();
+        //Log.d("TAG", "updateBoss: time: "+ lastFrameChangeTimeBoss);
+        if (currentTime - lastFrameChangeTimeBoss > 500) {
+               //Log.d("currentIndex", "update: "+bossFrameIndex+ " "+ bossAnimation.getFrameCount()+ "time: "+ lastFrameChangeTimeBoss);
+            bossFrameIndex++;
+            this.bossAnimation.nextFrame();
+            lastFrameChangeTimeBoss = currentTime;
+            if (bossFrameIndex >= bossAnimation.getFrameCount()) {
+                //Log.d("weapons", "update: lần thứ"+ currentFrameIndex);
+                bossFrameIndex = 0;
+            }
+        }
+    }
     public void startAnimation() {
-        currentFrameIndex = 0;
-        lastFrameChangeTime = System.currentTimeMillis();
+        weaponFrameIndex = 0;
+        lastFrameChangeTimeWeapon = System.currentTimeMillis();
         isAnimating = true;
     }
-    public Bitmap getCurrentAni() {
-        return currentAni.getCurrentFrame();
+    // Khởi tạo animation cho boss
+    public void startBossAnimation() {
+        bossFrameIndex = 0;
+        lastFrameChangeTimeBoss = System.currentTimeMillis(); // Khởi tạo thời gian cho boss
+        isAnimating = true;
     }
 
-    public void setCurrentAni(Animation currentAni) {
-        this.currentAni = currentAni;
+//
+
+
+    public Bitmap getWeaponAnimation() {
+        return weaponAnimation.getCurrentFrame();
+    }
+
+    public void setWeaponAnimation(Animation weaponAnimation) {
+        this.weaponAnimation = weaponAnimation;
+    }
+
+    public Bitmap getBossAnimation() {
+        return bossAnimation.getCurrentFrame();
+    }
+
+    public void setBossAnimation(Animation bossAnimation) {
+        this.bossAnimation = bossAnimation;
     }
 
     public void resetAnimation() {
         currentFrameIndex = 0;
-       // lastFrameTime = System.currentTimeMillis();
+        // lastFrameTime = System.currentTimeMillis();
     }
     public boolean isAnimating() {
         return isAnimating;

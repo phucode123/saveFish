@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/pause_dialog_background"
+    android:gravity="center"
+    android:elevation="8dp">
+
+    <!-- Tiêu đề thông báo Pause -->
+    <TextView
+        android:id="@+id/tvPauseTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Game Paused"
+        android:textSize="22sp"
+        android:textColor="#000"
+        android:paddingBottom="12dp"
+        android:gravity="center"/>
+
+    <!-- Nút Resume -->
+    <Button
+        android:id="@+id/btnResume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resume"
+        android:textColor="#FFF"
+        android:backgroundTint="@color/teal_700"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Nút Quit -->
+    <Button
+        android:id="@+id/btnQuit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quit"
+        android:textColor="#FFF"
+        android:backgroundTint="@color/orange"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"/>
+
+</LinearLayout>

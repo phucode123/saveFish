@@ -3,6 +3,7 @@ package com.example.save_my_friend.model;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.util.Log;
 
 import com.example.save_my_friend.utils.ImageUtils;
@@ -18,10 +19,12 @@ public class Fish {
     boolean movingLeft, movingRight;
     float screenWidth, screenHeight;
     private boolean isMoving = false;
-
-    public Fish(Context context, int dWidth, int dHeight, int groundHeight) {
+    private  boolean turnRight= true;
+    public int health;
+    public Fish(Context context, int dWidth, int dHeight, int groundHeight, int health) {
         this.screenWidth = dWidth;
         this.screenHeight = dHeight;
+        this.health = health;
         // Sử dụng hàm chung để xử lý và thay đổi kích thước các hình ảnh
         this.fish = ImageUtils.getResizedBitmap(context, R.drawable.fish_sad, 0.2f, 0.2f);
         this.fishLeft = ImageUtils.getResizedBitmap(context, R.drawable.fish_l, 0.21f, 0.25f);
@@ -36,6 +39,14 @@ public class Fish {
         } else {
             Log.e("Fish", "Fish bitmap is null");
         }
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     public Bitmap getFishImage() {
@@ -54,13 +65,20 @@ public class Fish {
             setFish(fishRight);
         }
         if (fish != null && !fish.isRecycled()) {
-
             canvas.drawBitmap(fish, this.getFishX(), this.getFishY(), null);
             // canvas.drawBitmap(bitmap, x, y, paint);
         } else {
             // Log hoặc xử lý trường hợp bitmap bị null hoặc đã bị recycled
             Log.e("Fish", "Bitmap is null or recycled");
         }
+    }
+
+    public boolean isTurnRight() {
+        return turnRight;
+    }
+
+    public void setTurnRight(boolean turnRight) {
+        this.turnRight = turnRight;
     }
 
     public void setFishW(float fishW) {
@@ -182,14 +200,9 @@ public class Fish {
         if (touchY >= fishY) {
             float shift = oldX - touchX;
             float newFishX = oldFishX - shift;
-            // Cập nhật hình ảnh cá dựa trên hướng di chuyển
             if (touchX > oldX) {
-                Log.d("TouchDirection", "Moving right");
-                // Cập nhật hình ảnh cá sang phải
                 this.setFish(fishRight);
             } else if (touchX < oldX) {
-                Log.d("TouchDirection", "Moving left");
-                // Cập nhật hình ảnh cá sang trái
                 this.setFish(fishLeft);
             }
             if (newFishX <= 0) {
@@ -203,15 +216,19 @@ public class Fish {
             oldFishX = newFishX;
         }
     }
-    public void handleTouch(float touchX, float touchY, int dWidth, int dHeight) {
+
+    public void handleTouch(float touchX, float touchY, int dWidth, int dHeight,Rect bossHitbox) {
         // Xử lý theo chiều ngang (trái/phải)
         float shiftX = oldX - touchX;
         float newFishX = oldFishX - shiftX;
         if (touchX > oldX) {
-            Log.d("con ca", "handleTouch: sang phai");
+           // Log.d("con ca", "handleTouch: sang phai");
+            setTurnRight(true);
             setFish(this.fishRight);
+//            Log.d("TAG", "handleTouch: right" + isTurnRight() );
         } else if (touchX < oldX) {
-            Log.d("con ca", "handleTouch: sang trai");
+            setTurnRight(false);
+//            Log.d("TAG", "handleTouch: left" + isTurnRight());
             setFish(this.fishLeft);
         }
         // Xử lý theo chiều dọc (lên/xuống)
